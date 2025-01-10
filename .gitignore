@@ -40,10 +40,10 @@ Thumbs.db
 .history/
 
 # 项目特定
-input/
-output/
-output_tmp/
-static/
+input/*
+output/*
+output_tmp/*
+static/*
 *.png
 *.jpg
 *.jpeg
