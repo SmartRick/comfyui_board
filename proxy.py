@@ -5,6 +5,7 @@ from functools import partial
 import os
 import sys
 import glob
+import shutil
 
 class CORSRequestHandler(SimpleHTTPRequestHandler):
     # 当前项目路径
@@ -12,6 +13,7 @@ class CORSRequestHandler(SimpleHTTPRequestHandler):
     # 定义类变量
     input_dir = os.path.join(project_path, "input")  # 修改为你的实际输出目录
     output_dir = os.path.join(project_path, "output_tmp")  # 修改为你的实际输出目录
+    static_dir = os.path.join(project_path, "static")  # 静态文件目录
 
     def __init__(self, *args, **kwargs):
         # 正确调用父类的初始化
@@ -185,16 +187,47 @@ class CORSRequestHandler(SimpleHTTPRequestHandler):
         else:
             super().do_POST()
 
+def ensure_directories():
+    """确保必要的目录存在"""
+    directories = [
+        CORSRequestHandler.input_dir,
+        CORSRequestHandler.output_dir,
+        CORSRequestHandler.static_dir
+    ]
+    
+    for directory in directories:
+        if not os.path.exists(directory):
+            try:
+                os.makedirs(directory)
+                print(f"\033[92m创建目录: {directory}\033[0m")
+            except Exception as e:
+                print(f"\033[91m创建目录失败 {directory}: {str(e)}\033[0m")
+                sys.exit(1)
+        else:
+            print(f"\033[94m目录已存在: {directory}\033[0m")
+
+        # 确保目录中有 .gitkeep 文件
+        gitkeep_file = os.path.join(directory, '.gitkeep')
+        if not os.path.exists(gitkeep_file):
+            try:
+                with open(gitkeep_file, 'w') as f:
+                    pass  # 创建空文件
+                print(f"\033[92m创建 .gitkeep: {gitkeep_file}\033[0m")
+            except Exception as e:
+                print(f"\033[91m创建 .gitkeep 失败 {gitkeep_file}: {str(e)}\033[0m")
+
 def run_server(port=8000):
     try:
-        # 检查输出目录是否存在
-        if not os.path.exists(CORSRequestHandler.output_dir):
-            print(f"\033[91mWarning: Output directory does not exist: {CORSRequestHandler.output_dir}\033[0m")
-            
+        # 确保所有必要的目录存在
+        ensure_directories()
+        
         server_address = ('', port)
         httpd = HTTPServer(server_address, CORSRequestHandler)
         print(f"\033[92mServer started on port {port}\033[0m")
-        print(f"\033[92mWatching for images in: {CORSRequestHandler.output_dir}\033[0m")
+        print(f"\033[92m监听目录:")
+        print(f"  输入: {CORSRequestHandler.input_dir}")
+        print(f"  输出: {CORSRequestHandler.output_dir}")
+        print(f"  静态: {CORSRequestHandler.static_dir}\033[0m")
         print(f"\033[92mForwarding requests to ComfyUI at http://127.0.0.1:8188\033[0m")
         httpd.serve_forever()
     except Exception as e:
