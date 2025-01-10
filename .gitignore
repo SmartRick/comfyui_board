@@ -41,15 +41,19 @@ Thumbs.db
 
 # 项目特定
 input/*
+!input/.gitkeep
 output/*
+!output/.gitkeep
 output_tmp/*
+!output_tmp/.gitkeep
 static/*
+!static/.gitkeep
 *.png
 *.jpg
 *.jpeg
 *.gif
 *.bmp
-!docs/preview.png
+!docs/cover.png
 
 # 日志
 *.log
