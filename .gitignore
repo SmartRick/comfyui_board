@@ -53,7 +53,7 @@ static/*
 *.jpeg
 *.gif
 *.bmp
-!docs/cover.png
+!docs/
 
 # 日志
 *.log

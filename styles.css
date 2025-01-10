@@ -6,6 +6,10 @@
     --primary-color: #007aff;
     --text-color: #1d1d1f;
     --secondary-text: #86868b;
+    --success-color: #34c759;
+    --warning-color: #ff9500;
+    --error-color: #ff3b30;
+    --canvas-bg: #f0f2f5;
 }
 
 * {
@@ -26,32 +30,102 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    animation: fadeIn 0.3s ease-out;
 }
 
-/* 工具栏样式 */
-.toolbar {
+/* 标题栏样式 */
+.title-bar {
     height: 38px;
+    padding: 0 16px;
     background: var(--panel-bg);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
-    padding: 0 16px;
-    gap: 20px;
+    justify-content: space-between;
+    -webkit-app-region: drag;
 }
 
+.title-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.app-logo {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.app-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.window-controls {
+    display: flex;
+    gap: 4px;
+    -webkit-app-region: no-drag;
+}
+
+.window-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    border-radius: 4px;
+    color: var(--secondary-text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-size: 12px;
+}
+
+.window-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.window-btn.close:hover {
+    background: var(--error-color);
+    color: white;
+}
+
+/* 工具栏样式 */
+.toolbar {
+    height: 44px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    gap: 16px;
+    position: relative;
+    z-index: 10;
+}
+
+/* 工具组样式 */
 .tool-group {
     display: flex;
     align-items: center;
-    gap: 4px;
-    padding: 0 8px;
+    gap: 8px;
+    padding: 0 12px;
+    height: 32px;
     border-right: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
 }
 
 .tool-group:last-child {
     border-right: none;
 }
 
+/* 工具按钮样式优化 */
 .tool-btn {
     width: 28px;
     height: 28px;
@@ -65,6 +139,7 @@ body {
     justify-content: center;
     transition: all 0.2s;
     position: relative;
+    font-size: 14px;
 }
 
 .tool-btn:hover {
@@ -72,18 +147,32 @@ body {
     color: var(--primary-color);
 }
 
-.tool-btn[title="重置视图"] {
-    margin-left: 4px;
-    border-left: 1px solid var(--border-color);
-    padding-left: 8px;
-}
-
+/* 缩放文本样式优化 */
 .zoom-text {
     font-size: 13px;
     color: var(--text-color);
     padding: 0 8px;
-    min-width: 60px;
+    min-width: 50px;
     text-align: center;
+    font-weight: 500;
+}
+
+/* 分隔线样式优化 */
+.tool-btn[title="重置视图"] {
+    margin-left: 4px;
+    position: relative;
+    padding-left: 12px;
+}
+
+.tool-btn[title="重置视图"]::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 16px;
+    background: var(--border-color);
 }
 
 /* 主内容区域 */
@@ -95,7 +184,7 @@ body {
 
 /* 侧边面板通用样式 */
 .side-panel, .layer-panel {
-    width: 240px;
+    width: 280px; /* 增加宽度 */
     background: var(--panel-bg);
     backdrop-filter: blur(10px);
     border-right: 1px solid var(--border-color);
@@ -113,17 +202,19 @@ body {
 
 /* 拖拽区域样式 */
 .drag-area {
-    border: 2px dashed var(--border-color);
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    transition: all 0.3s;
+    padding: 24px;
     background: rgba(255, 255, 255, 0.5);
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    transition: all 0.3s;
+    text-align: center;
 }
 
 .drag-area:hover {
     background: rgba(255, 255, 255, 0.8);
     border-color: var(--primary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .drag-area i {
@@ -151,7 +242,14 @@ body {
 .canvas-container {
     flex: 1;
     position: relative;
-    background: var(--canvas-bg);
+    background: #f0f2f5;
+    background-image: 
+        linear-gradient(45deg, #e9ecef 25%, transparent 25%),
+        linear-gradient(-45deg, #e9ecef 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #e9ecef 75%),
+        linear-gradient(-45deg, transparent 75%, #e9ecef 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
     overflow: auto;
 }
 
@@ -231,20 +329,23 @@ body {
 .layer-item {
     display: flex;
     align-items: center;
-    padding: 8px 12px;
-    gap: 8px;
+    padding: 10px 16px;
+    gap: 12px;
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 8px;
     transition: all 0.2s;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid transparent;
 }
 
 .layer-item:hover {
-    background: rgba(0, 0, 0, 0.03);
+    background: rgba(255, 255, 255, 0.8);
+    border-color: var(--border-color);
 }
 
 .layer-item.selected {
     background: rgba(0, 122, 255, 0.08);
+    border-color: var(--primary-color);
 }
 
 /* 图层预览图 */
@@ -285,7 +386,7 @@ body {
 /* 图层操作按钮 */
 .layer-actions {
     display: flex;
-    gap: 2px;
+    gap: 4px;
     opacity: 0;
     transition: opacity 0.2s;
 }
@@ -299,29 +400,23 @@ body {
     border: none;
     color: var(--secondary-text);
     cursor: pointer;
-    padding: 6px;
+    padding: 4px;
     border-radius: 4px;
     font-size: 14px;
     transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
 }
 
 .layer-btn:hover {
     background: rgba(0, 0, 0, 0.05);
+    color: var(--text-color);
 }
 
 .duplicate-btn:hover {
     color: var(--primary-color);
-    background: rgba(0, 122, 255, 0.1);
 }
 
 .delete-btn:hover {
     color: #dc3545;
-    background: rgba(220, 53, 69, 0.1);
 }
 
 /* 滚动条样式 */
@@ -363,15 +458,16 @@ body {
 
 .modal-content {
     background: var(--panel-bg);
-    border-radius: 12px;
-    padding: 24px;
-    min-width: 320px;
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 28px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    min-width: 320px;
 }
 
 .modal-content h3 {
     margin: 0 0 20px 0;
-    font-size: 16px;
+    font-size: 18px;
     color: var(--text-color);
 }
 
@@ -474,18 +570,18 @@ body {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 12px 24px;
+    padding: 12px 28px;
     background: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 24px;
-    font-size: 14px;
-    font-weight: 500;
+    border-radius: 28px;
+    font-size: 15px;
+    font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
     transition: all 0.2s;
     z-index: 1000;
 }
@@ -715,11 +811,24 @@ body {
 .layer-item {
     display: flex;
     align-items: center;
-    padding: 8px 12px;
+    padding: 10px 16px;
     gap: 12px;
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 8px;
     transition: all 0.2s;
+    margin: 4px 0;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid transparent;
+}
+
+.layer-item:hover {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: var(--border-color);
+}
+
+.layer-item.selected {
+    background: rgba(0, 122, 255, 0.08);
+    border-color: var(--primary-color);
 }
 
 .layer-info {
@@ -752,7 +861,10 @@ body {
 
 /* 配置组样式 */
 .config-group {
-    margin-bottom: 16px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 .config-group:last-child {
@@ -761,24 +873,26 @@ body {
 
 .config-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-size: 13px;
-    color: var(--secondary-text);
+    color: var(--text-color);
+    font-weight: 500;
 }
 
 .config-group input {
     width: 100%;
-    padding: 8px 12px;
+    padding: 10px 12px;
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 14px;
     background: white;
+    transition: all 0.2s;
 }
 
 .config-group input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
 }
 
 /* 数字输入框的特殊样式 */
@@ -795,21 +909,22 @@ body {
 /* 配置组样式 */
 .config-group textarea {
     width: 100%;
-    padding: 8px 12px;
+    padding: 10px 12px;
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 14px;
     background: white;
     resize: vertical;
     min-height: 80px;
     font-family: inherit;
     line-height: 1.5;
+    transition: all 0.2s;
 }
 
 .config-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
 }
 
 /* 滚动条样式 */
@@ -846,9 +961,48 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: all 0.2s;
+    z-index: 100;
+    pointer-events: none;
 }
 
 .tool-btn:hover::after {
     opacity: 1;
     visibility: visible;
+    bottom: -35px;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 添加提示框的动画效果 */
+@keyframes tooltipFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.tool-btn:hover::after {
+    animation: tooltipFadeIn 0.2s ease-out forwards;
+}
+
+/* 添加动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 优化响应式布局 */
+@media (max-width: 1200px) {
+    .side-panel, .layer-panel {
+        width: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    .side-panel, .layer-panel {
+        width: 200px;
+    }
 } 

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 图像编辑器 - 让创作更简单</title>
+    <link rel="stylesheet" href="welcome.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 背景动画 -->
+    <div class="bg-animation">
+        <div class="floating-orb orb1"></div>
+        <div class="floating-orb orb2"></div>
+        <div class="floating-orb orb3"></div>
+        <div class="floating-orb orb4"></div>
+        <div class="floating-orb orb5"></div>
+        <div class="glow"></div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="container">
+        <!-- 顶部导航栏 -->
+        <nav class="nav-bar">
+            <div class="nav-left">
+                <img src="static/logo.svg" alt="logo" class="nav-logo">
+                <span class="nav-title">AI 图像编辑器</span>
+            </div>
+            <div class="nav-right">
+                <a href="https://github.com/SmartRick/comfyui_board#readme" class="nav-link" target="_blank">文档</a>
+                <a href="https://github.com/SmartRick/comfyui_board" class="nav-link" target="_blank">关于</a>
+                <a href="index.html" class="nav-button">打开应用</a>
+            </div>
+        </nav>
+
+        <!-- 主要内容 -->
+        <main class="main-content">
+            <div class="hero-section">
+                <h1 class="hero-title">
+                    <span class="gradient-text">AI驱动的</span>
+                    <br>
+                    图像编辑新体验
+                </h1>
+                <p class="hero-subtitle">专业的图层管理，智能的AI生成，让创作更加简单自由</p>
+                
+                <div class="cta-group">
+                    <a href="index.html" class="cta-button primary">
+                        <span>立即开始</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#features" class="cta-button secondary">
+                        <span>了解更多</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                </div>
+
+                <!-- 添加滚动指示器 -->
+                <div class="scroll-indicator">
+                    <div class="mouse"></div>
+                    <span>向下滚动</span>
+                </div>
+            </div>
+
+            <!-- 特性展示 -->
+            <div id="features" class="features-section">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>专业图层管理</h3>
+                    <p>强大的图层控制系统，支持灵活的图层编辑和组织</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>AI智能生成</h3>
+                    <p>基于最新AI技术，轻松生成高质量图像</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>直观编辑体验</h3>
+                    <p>简洁优雅的界面设计，流畅自然的操作体验</p>
+                </div>
+            </div>
+
+            <!-- 预览展示 -->
+            <div class="preview-section">
+                <div class="preview-container">
+                    <div class="preview-item floating">
+                        <img src="docs/p1.jpg" alt="图层管理演示" class="preview-image" loading="lazy">
+                    </div>
+                    <div class="preview-item floating delay-1">
+                        <img src="docs/p2.jpg" alt="AI 能力演示" class="preview-image" loading="lazy">
+                    </div>
+                    <div class="preview-item floating delay-2">
+                        <img src="docs/p3.jpg" alt="工具特性演示" class="preview-image" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <div class="details-grid">
+                    <!-- 图层管理详情 -->
+                    <div class="details-item">
+                        <div class="details-content">
+                            <h3>专业的图层管理</h3>
+                            <ul class="feature-list-detailed">
+                                <li>
+                                    <i class="fas fa-arrows-alt"></i>
+                                    <div>
+                                        <h4>灵活的图层操作</h4>
+                                        <p>支持拖拽排序、移动、缩放和旋转，让图层编辑更加直观</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-clone"></i>
+                                    <div>
+                                        <h4>快捷图层处理</h4>
+                                        <p>一键复制、删除图层，支持图层可见性控制</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-keyboard"></i>
+                                    <div>
+                                        <h4>快捷键支持</h4>
+                                        <p>常用操作都配备快捷键，提升工作效率</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="details-image">
+                            <img src="docs/w1.jpg" alt="图层管理演示">
+                        </div>
+                    </div>
+
+                    <!-- AI 能力详情 -->
+                    <div class="details-item reverse">
+                        <div class="details-content">
+                            <h3>强大的 AI 能力</h3>
+                            <ul class="feature-list-detailed">
+                                <li>
+                                    <i class="fas fa-brain"></i>
+                                    <div>
+                                        <h4>ComfyUI 集成</h4>
+                                        <p>基于 ComfyUI 的图像生成能力，支持丰富的生成参数配置</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-sliders-h"></i>
+                                    <div>
+                                        <h4>参数调优</h4>
+                                        <p>提供直观的参数控制界面，轻松调整生成效果</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-eye"></i>
+                                    <div>
+                                        <h4>实时预览</h4>
+                                        <p>生成过程实时反馈，让创作过程更加可控</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="details-image">
+                            <img src="docs/w2.jpg" alt="AI 能力演示">
+                        </div>
+                    </div>
+
+                    <!-- 工具特性详情 -->
+                    <div class="details-item">
+                        <div class="details-content">
+                            <h3>便捷的工具特性</h3>
+                            <ul class="feature-list-detailed">
+                                <li>
+                                    <i class="fas fa-expand"></i>
+                                    <div>
+                                        <h4>画布控制</h4>
+                                        <p>支持画布缩放(10% - 300%)和大小调整，满足不同场景需求</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-file-export"></i>
+                                    <div>
+                                        <h4>导出功能</h4>
+                                        <p>支持将作品导出为高质量图片，方便分享和使用</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-window-maximize"></i>
+                                    <div>
+                                        <h4>现代界面</h4>
+                                        <p>macOS 风格的界面设计，简洁优雅的视觉体验</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="details-image">
+                            <img src="docs/w3.png" alt="工具特性演示">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 技术栈展示 -->
+                <div class="tech-stack">
+                    <h3>技术支持</h3>
+                    <div class="tech-grid">
+                        <div class="tech-item">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 背景动画
+        document.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.floating-orb');
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const deltaX = (e.clientX - centerX) / centerX;
+            const deltaY = (e.clientY - centerY) / centerY;
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 15;
+                const scale = 1 + (distance * 0.1);
+                const rotation = (deltaX + deltaY) * 10;
+                const x = deltaX * speed;
+                const y = deltaY * speed;
+                
+                orb.style.transform = `
+                    translate(${x}px, ${y}px) 
+                    scale(${scale}) 
+                    rotate(${rotation}deg)
+                `;
+            });
+
+            // 更新光晕
+            const glow = document.querySelector('.glow');
+            glow.style.background = `
+                radial-gradient(circle at ${e.clientX}px ${e.clientY}px, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                rgba(255, 255, 255, 0.05) 25%, 
+                transparent 50%)
+            `;
+        });
+
+        // 视差滚动
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.floating');
+            
+            parallaxElements.forEach((el, index) => {
+                const speed = 1 + index * 0.2;
+                const yPos = -(scrolled * speed / 5);
+                el.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+    </script>
+</body>
+</html> 

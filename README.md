@@ -3,6 +3,10 @@
 一个基于 Web 的 AI 图像编辑工具，集成了 ComfyUI 后端，提供直观的图层管理和图像生成功能。
 
 ![预览图](docs/cover.png)
+![预览图1](docs/cover1.png)
+![预览图2](docs/cover2.png)
+![预览图3](docs/cover3.png)
+
 
 ## ✨ 特性
 

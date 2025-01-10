@@ -34,6 +34,7 @@ class CanvasBoard {
         this.initConfigPanel();
         this.initShortcuts();
         this.initZoomControls();
+        this.initWindowControls();
     }
 
     /**
@@ -1424,6 +1425,36 @@ class CanvasBoard {
             left: scrollX,
             top: scrollY,
             behavior: 'smooth'
+        });
+    }
+
+    /**
+     * 初始化窗口控制按钮
+     */
+    initWindowControls() {
+        // 获取关闭按钮
+        const closeBtn = document.querySelector('.window-btn.close');
+        
+        // 绑定点击事件
+        closeBtn.addEventListener('click', () => {
+            // 跳转到欢迎页面
+            window.location.href = 'welcome.html';
+        });
+        
+        // 获取最小化和最大化按钮
+        const minimizeBtn = document.querySelector('.window-btn.minimize');
+        const maximizeBtn = document.querySelector('.window-btn.maximize');
+        
+        // 绑定最小化按钮事件
+        minimizeBtn.addEventListener('click', () => {
+            // TODO: 实现最小化功能
+            console.log('最小化功能待实现');
+        });
+        
+        // 绑定最大化按钮事件
+        maximizeBtn.addEventListener('click', () => {
+            // TODO: 实现最大化功能
+            console.log('最大化功能待实现');
         });
     }
 }
